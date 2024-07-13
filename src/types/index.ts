@@ -1,4 +1,12 @@
+// Local Wallet Data Type
 export type WalletRecord = { name: string; address: string };
+export type WalletResult = {
+  name: string;
+  address: string;
+  balance: string;
+  points: string;
+};
+
 export type AirAddressDetails = {
   data: WalletData;
   description: string;
