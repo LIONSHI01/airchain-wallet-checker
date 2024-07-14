@@ -2,12 +2,14 @@ import {
   loadLocalWalletList,
   loadLocalWalletResult,
   writeDataToLocal,
-} from "./helper/local-data";
+} from "./utils/local-data";
 import { getWalletDetailsApi } from "./api/get-wallet-details";
-import { logger } from "./helper/logger";
+import { logger } from "./utils/logger";
 import { getWalletPointsApi } from "./api/get-wallet-points";
 import path from "path";
 import { WalletRecord, WalletResult } from "./types";
+import { bot } from "./telegram";
+import { TELEGRAM_CHAT_ROOM_ID } from "./constants";
 
 const TOO_LOW_AMOUNT = 1;
 const WALLET_RESULTS_FILE_NAME = "wallet_result.txt";
@@ -17,6 +19,8 @@ const filepath = path.join(directory, WALLET_RESULTS_FILE_NAME);
 
 let wallets: WalletRecord[];
 let walletResult: WalletResult[];
+
+bot.launch();
 
 async function init() {
   wallets = loadLocalWalletList();
@@ -45,6 +49,19 @@ async function main() {
       if (pointDiff > 0) {
         isEarningPoints = true;
       }
+    }
+
+    if (!isEarningPoints) {
+      const warningMsg = `🔴 ${name} is NOT earning points`;
+      bot.telegram.sendMessage(TELEGRAM_CHAT_ROOM_ID, warningMsg);
+    }
+
+    if (isBalanceTooLow) {
+      const warningMsg = `🔴 Balance warning
+                          Wallet: ${name}
+                          Balance: ${spendable_amount}
+      `;
+      bot.telegram.sendMessage(TELEGRAM_CHAT_ROOM_ID, warningMsg);
     }
 
     // Write Result to Local File
