@@ -8,3 +8,5 @@ export const TELEGRAM_BOT_TOKEN = retrieveEnvVariable(
   "TELEGRAM_BOT_TOKEN",
   logger
 );
+
+export const INTERVAL = Number(retrieveEnvVariable("INTERVAL", logger));

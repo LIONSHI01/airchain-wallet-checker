@@ -9,7 +9,7 @@ import { getWalletPointsApi } from "./api/get-wallet-points";
 import path from "path";
 import { WalletRecord, WalletResult } from "./types";
 import { bot } from "./telegram";
-import { TELEGRAM_CHAT_ROOM_ID } from "./constants";
+import { INTERVAL, TELEGRAM_CHAT_ROOM_ID } from "./constants";
 
 const TOO_LOW_AMOUNT = 1;
 const WALLET_RESULTS_FILE_NAME = "wallet_result.txt";
@@ -84,4 +84,4 @@ async function main() {
   writeDataToLocal(filepath, dataToWrite);
 }
 
-setInterval(main, 60 * 1000 * 30);
+setInterval(main, INTERVAL * 1000 * 30);
