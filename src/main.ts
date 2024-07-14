@@ -58,8 +58,8 @@ async function main() {
 
     if (isBalanceTooLow) {
       const warningMsg = `🔴 Balance warning
-                          Wallet: ${name}
-                          Balance: ${spendable_amount}
+      Wallet: ${name}
+      Balance: ${spendable_amount}
       `;
       bot.telegram.sendMessage(TELEGRAM_CHAT_ROOM_ID, warningMsg);
     }
