@@ -57,7 +57,7 @@ async function main() {
     // Log Data to Terminal
     const signalEmoji = `${isBalanceTooLow ? "🔴" : "🟢"}`;
     const resultLogString = `${signalEmoji} ${name} | $${spendable_amount} | Pts: ${
-      total_points || 0
+      total_points || "Failed"
     } | Diff:${isEarningPoints ? "⚡️" : "⚠️"} ${pointDiff}`;
 
     logger.info(resultLogString);
@@ -66,4 +66,4 @@ async function main() {
   writeDataToLocal(filepath, dataToWrite);
 }
 
-main();
+setInterval(main, 60 * 1000 * 30);

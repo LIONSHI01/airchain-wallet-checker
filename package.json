@@ -6,6 +6,7 @@
   "scripts": {
     "start": "yarn build && node ./dist/main.js",
     "dev": "yarn build && node ./dist/main.js",
+    "pm2": "yarn build && pm2 delete airchains-monitor && pm2 start ./dist/main.js --name \"airchains-monitor\"",
     "build": "yarn clean && tsc",
     "clean": "rimraf ./dist",
     "test": "yarn build && node ./dist/test.js"
