@@ -84,4 +84,4 @@ async function main() {
   writeDataToLocal(filepath, dataToWrite);
 }
 
-setInterval(main, INTERVAL * 1000 * 30);
+setInterval(main, 60 * 1000 * INTERVAL);
