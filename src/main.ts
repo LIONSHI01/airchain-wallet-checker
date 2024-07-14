@@ -57,7 +57,8 @@ async function main() {
     }
 
     if (isBalanceTooLow) {
-      const warningMsg = `🔴 Balance warning
+      const warningMsg = `
+      🔴 Balance warning
       Wallet: ${name}
       Balance: ${spendable_amount}
       `;
@@ -66,7 +67,7 @@ async function main() {
 
     // Write Result to Local File
     const resultStringToFile = `${name},${address},${spendable_amount},${
-      total_points || 0
+      total_points || walletResultRecord.points
     }\n`;
 
     dataToWrite += resultStringToFile;
@@ -75,7 +76,7 @@ async function main() {
     const signalEmoji = `${isBalanceTooLow ? "🔴" : "🟢"}`;
     const resultLogString = `${signalEmoji} ${name} | $${spendable_amount} | Pts: ${
       total_points || "Failed"
-    } | Diff:${isEarningPoints ? "⚡️" : "⚠️"} ${pointDiff}`;
+    } | Growth:${isEarningPoints ? "⚡️" : "⚠️"} ${pointDiff}`;
 
     logger.info(resultLogString);
   }
