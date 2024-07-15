@@ -23,7 +23,7 @@ let walletResult: WalletResult[];
 bot.launch();
 
 async function init() {
-  wallets = loadLocalWalletList();
+  wallets = loadLocalWalletList("./wallet-track-list");
   walletResult = loadLocalWalletResult();
 }
 

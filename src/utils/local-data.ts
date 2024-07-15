@@ -4,12 +4,12 @@ import { logger } from "./logger";
 import { resolve } from "path";
 import { WalletRecord, WalletResult } from "../types";
 
-export const loadLocalWalletList = (): WalletRecord[] => {
+export const loadLocalWalletList = (filePath: string): WalletRecord[] => {
   let walletList: WalletRecord[] = [];
 
   logger.info(`Loading wallet list...`);
 
-  const poolListPath = resolve("./wallet-track-list.txt");
+  const poolListPath = resolve(filePath);
   const data = fs.readFileSync(poolListPath, "utf-8");
 
   walletList = data
