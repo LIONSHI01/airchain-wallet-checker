@@ -87,7 +87,9 @@ async function main() {
     console.log(error);
   }
 
-  bot.telegram.sendMessage(TELEGRAM_CHAT_ROOM_ID, tgErrorMessage);
+  tgErrorMessage &&
+    bot.telegram.sendMessage(TELEGRAM_CHAT_ROOM_ID, tgErrorMessage);
+
   writeDataToLocal(filepath, dataToWrite);
 }
 
